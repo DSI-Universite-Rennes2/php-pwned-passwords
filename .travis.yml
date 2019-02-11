@@ -17,5 +17,5 @@ before_script:
 
 script:
   - ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
-  - php -n -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose
+  - php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose
 
