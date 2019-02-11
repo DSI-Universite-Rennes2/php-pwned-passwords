@@ -1,6 +1,6 @@
 # PHP Pwned Passwords
 
-[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/)
+[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/) [![Build Status](https://travis-ci.org/DSI-Universite-Rennes2/php-pwned-passwords.svg?branch=master)](https://travis-ci.org/DSI-Universite-Rennes2/php-pwned-passwords)
 
 A PHP library for the [Pwned Passwords's](https://haveibeenpwned.com/Passwords) API from Troy Hunt's [Have I Been Pwned](https://haveibeenpwned.com/) project.
 
