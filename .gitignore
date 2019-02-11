@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: LGPL-3.0-or-later
+# License-Filename: LICENSE
+
+# Files to ignore
+/composer.phar
+/reports/atoum/
+/reports/codesniffer/guidelines.html
+/reports/codesniffer/report.html
+/reports/phpcpd/report.xml
+/reports/phpmd/
+/reports/phpmetrics/
+/reports/phpunits/
+/vendor
+
+# generic tmp files to ignore
+*~
+*.pyc
+*.swp
+/tags
+/TAGS
+/cscope.*
+/.patches/
+/.idea/
+/nbproject/
+CVS
+.DS_Store
+/.settings/
+/.project
+/.buildpath
+/.cache
+

@@ -1,0 +1,22 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: hhvm
+
+before_script:
+  - composer self-update || true
+  - composer update
+  - composer --prefer-source --dev install
+
+script:
+  - ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
+  - ./vendor/bin/atoum tests/units/PwnedPasswords.php
+
