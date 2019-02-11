@@ -20,10 +20,14 @@ $runner->getScore()->getCoverage();
 $travis = getenv('TRAVIS');
 if ($travis)
 {
+    echo "TRAVIS ENV\n";
+    echo "  JOB ID : " . getenv('TRAVIS_JOB_ID') . "\n";
+    echo "  BRANCH : " . getenv('TRAVIS_BRANCH') . "\n";
     $script->addDefaultReport();
     $coverallsToken = getenv('COVERALLS_REPO_TOKEN');
     if ($coverallsToken)
     {
+        echo "  COVERALLS Token detected...\n";
         $coverallsReport = new reports\asynchronous\coveralls('classes', $coverallsToken);
         $defaultFinder = $coverallsReport->getBranchFinder();
         $coverallsReport
