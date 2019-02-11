@@ -40,6 +40,5 @@ if ($travis)
             ->addDefaultWriter()
         ;
         $runner->addReport($coverallsReport);
-        $script->testIt();
     }
 }
