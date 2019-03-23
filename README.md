@@ -43,7 +43,10 @@ composer require univ-rennes2/pwned-passwords
 
 ```
 <?php
-require_once __DIR__ . "/vendor/autoload.php";
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 use UniversiteRennes2\PwnedPasswords\PwnedPasswords;
 
@@ -51,26 +54,27 @@ $PPApi = new PwnedPasswords();
 
 // Set new URI for API if have local API server (like this API server in Golang : <https://github.com/tylerchr/pwnedpass>)
 // default is set to Troy Hunt's API.
-$PPApi->setApiUrl('http://127.0.0.1:3000/range');
+// $PPApi->setApiUrl('http://127.0.0.1:3000/range');
 
 $password = '123456';
 
 // Just test of pwned or not
-if ( $PPApi->isPwned($password) ) {
+if ($PPApi->isPwned($password)) {
     // Pwned password
-    echo "$password have been pwned\n";
+    printf("%s have been pwned\n", $password);
 } else {
     // Not Pwned password
-    echo "$password have NOT been pwned\n";
+    printf("%s have NOT been pwned\n", $password);
 }
 
 // To knows how many times it have been pwned
-if ( $pwned = $PPApi->howManyPwned($password) > 0 ) {
+$pwned = $PPApi->howManyPwned($password);
+if ($pwned > 0) {
     // Pwned
-    echo "$password have been pwned $pwned times\n";
+    printf("%s have been pwned %s times\n", $password, $pwned);
 } else {
     // Not pwned
-    echo "$password have NOT been pwned\n";
+    printf("%s have NOT been pwned\n");
 }
 ```
 
