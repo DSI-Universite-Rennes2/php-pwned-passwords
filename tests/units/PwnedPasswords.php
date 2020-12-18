@@ -78,8 +78,8 @@ class PwnedPasswords extends atoum
     {
         $i =0;
 
-        $pass = 'jesuisnul';
-        $count = 34;
+        $pass = 'coucoucestnous';
+        $count = 3;
 
         $i++;
         $this->assert(__METHOD__ . ' : test #' . $i)
