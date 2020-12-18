@@ -1,6 +1,6 @@
 # PHP Pwned Passwords
 
-[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/) [![Build Status](https://travis-ci.org/DSI-Universite-Rennes2/php-pwned-passwords.svg?branch=master)](https://travis-ci.org/DSI-Universite-Rennes2/php-pwned-passwords) [![Coverage Status](https://coveralls.io/repos/github/DSI-Universite-Rennes2/php-pwned-passwords/badge.svg?branch=master)](https://coveralls.io/github/DSI-Universite-Rennes2/php-pwned-passwords?branch=master)
+[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/) ![PHP](https://github.com/DSI-Universite-Rennes2/php-pwned-passwords/workflows/PHP%20Composer/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/DSI-Universite-Rennes2/php-pwned-passwords/badge.svg?branch=master)](https://coveralls.io/github/DSI-Universite-Rennes2/php-pwned-passwords?branch=master)
 
 A PHP library for the [Pwned Passwords's](https://haveibeenpwned.com/Passwords) API from Troy Hunt's [Have I Been Pwned](https://haveibeenpwned.com/) project.
 
