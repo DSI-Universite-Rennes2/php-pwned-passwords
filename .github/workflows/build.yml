@@ -10,7 +10,7 @@ jobs:
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
     strategy: 
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-18.04, ubuntu-20.04]
         php: [7.1, 7.2, 7.3, 7.4, 8.0]
 
     steps:
@@ -26,7 +26,7 @@ jobs:
           tools: composer
 
       - name: Install Composer dependencies
-        run: composer install --prefer-source --dev --no-interaction --no-suggest
+        run: composer install --prefer-dist --no-interaction
 
       - name: PHP CS
         run: ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
