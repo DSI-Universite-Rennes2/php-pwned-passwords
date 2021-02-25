@@ -8,6 +8,7 @@ declare(strict_types=1);
  * SPDX-License-Identifier: LGPL-3.0-or-later
  * License-Filename: LICENSE
  */
+
 namespace UniversiteRennes2\PwnedPasswords;
 
 use RuntimeException;
