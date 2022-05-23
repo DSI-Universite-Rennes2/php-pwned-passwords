@@ -43,5 +43,5 @@ jobs:
         run: ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
 
       - name: PHP Unit Tests
-        run: php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose
+        run: XDEBUG_MODE=coverage php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose
 
