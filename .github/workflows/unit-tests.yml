@@ -16,7 +16,8 @@ jobs:
       fail-fast: false
 
     env:
-      coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.1') && 'xdebug' || '0' }}
+      coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php == '8.1') && 'xdebug' || '0' }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
 
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
@@ -31,7 +32,6 @@ jobs:
           extensions: curl, mbstring
           coverage: xdebug
           tools: composer
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Composer Cache Directory
         id: composer-cache
