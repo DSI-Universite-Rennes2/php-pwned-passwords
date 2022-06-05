@@ -5,13 +5,20 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.os }}
-    name: PHP ${{ matrix.php }} on ${{ matrix.os }}
-    strategy: 
+
+    strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: ['ubuntu-latest']
         php: [7.1, 7.2, 7.3, 7.4, 8.0, 8.1]
+        experimental: [ false ]
+      fail-fast: false
+
+    env:
+      coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.0') && 'xdebug' || 'none' }}
+
+    name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
     steps:
       - name: Checkout
@@ -43,5 +50,6 @@ jobs:
         run: ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
 
       - name: PHP Unit Tests
-        run: XDEBUG_MODE=coverage php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose
+        continue-on-error: ${{ matrix.experimental }}
+        run: XDEBUG_MODE=coverage php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose --enable-branch-and-path-coverage
 

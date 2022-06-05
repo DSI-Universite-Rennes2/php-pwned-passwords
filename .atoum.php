@@ -9,7 +9,13 @@ More information on documentation:
 [fr] http://docs.atoum.org/fr/chapter3.html#Fichier-de-configuration
 */
 
-use mageekguy\atoum\reports;
+
+use
+    atoum\atoum,
+    atoum\atoum\reports,
+    atoum\atoum\writers\std
+;
+//use mageekguy\atoum\reports;
 
 $runner
     ->addTestsFromDirectory(__DIR__ . '/tests/units/')
@@ -17,14 +23,12 @@ $runner
 
 $runner->getScore()->getCoverage();
 
-$travis = getenv('TRAVIS');
-if ($travis)
+$CI = getenv('coverage');
+if ($CI)
 {
-    echo "TRAVIS ENV\n";
-    echo "  JOB ID : " . getenv('TRAVIS_JOB_ID') . "\n";
-    echo "  BRANCH : " . getenv('TRAVIS_BRANCH') . "\n";
     $script->addDefaultReport();
-    $coverallsToken = getenv('COVERALLS_REPO_TOKEN');
+
+    $coverallsToken = getenv('COVERALLS_REPO_TOKEN') ?: null;
     if ($coverallsToken)
     {
         echo "  COVERALLS Token detected...\n";
@@ -32,15 +36,15 @@ if ($travis)
         $defaultFinder = $coverallsReport->getBranchFinder();
         $coverallsReport
             ->setBranchFinder(function() use ($defaultFinder) {
-                    if (($branch = getenv('TRAVIS_BRANCH')) === false)
+                    if (($branch = getenv('GITHUB_BRANCH')) === false)
                     {
                         $branch = $defaultFinder();
                     }
                     return $branch;
                 }
             )
-            ->setServiceName(getenv('TRAVIS') ? 'travis-ci' : null)
-            ->setServiceJobId(getenv('TRAVIS_JOB_ID') ?: null)
+            ->setServiceName(getenv('CI') ? 'github-actions' : null)
+            ->setServiceJobId(getenv('GITHUB_RUN_NUMBER') ?: null)
             ->addDefaultWriter()
         ;
         $runner->addReport($coverallsReport);
