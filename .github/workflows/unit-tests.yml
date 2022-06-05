@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    environment: COVERALLS
+    environment: 'COVERALLS'
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -19,6 +19,7 @@ jobs:
     env:
       coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php == '8.1') && 'xdebug' || '0' }}
       github-token: ${{ secrets.GITHUB_TOKEN }}
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
