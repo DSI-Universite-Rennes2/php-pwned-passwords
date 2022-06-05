@@ -43,10 +43,14 @@ if ($CI)
                     return $branch;
                 }
             )
-            ->setServiceName(getenv('CI') ? 'github-actions' : null)
+            ->setServiceName('github-actions')
             ->setServiceJobId(getenv('GITHUB_RUN_NUMBER') ?: null)
             ->addDefaultWriter()
         ;
         $runner->addReport($coverallsReport);
+    } else {
+        echo "Missing coveralls token\n";
     }
+} else {
+    echo "No coverage reports (missing coverage env variable) : $CI\n";
 }
