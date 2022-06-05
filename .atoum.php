@@ -9,13 +9,14 @@ More information on documentation:
 [fr] http://docs.atoum.org/fr/chapter3.html#Fichier-de-configuration
 */
 
-
+/*
 use
     atoum\atoum,
     atoum\atoum\reports,
     atoum\atoum\writers\std
-;
-//use mageekguy\atoum\reports;
+    ;
+*/
+use mageekguy\atoum\reports;
 
 $runner
     ->addTestsFromDirectory(__DIR__ . '/tests/units/')
@@ -26,11 +27,13 @@ $runner->getScore()->getCoverage();
 $CI = getenv('coverage');
 if ($CI)
 {
+    echo "CI: $CI\n";
     $script->addDefaultReport();
 
-    $coverallsToken = getenv('COVERALLS_REPO_TOKEN') ?: null;
+    $coverallsToken  = getenv('COVERALLS_REPO_TOKEN') ?: null;
+    echo "Len token : " . len($coverallsToken) . "\n";
     $coverallsReport = new reports\asynchronous\coveralls('classes', $coverallsToken);
-    $defaultFinder = $coverallsReport->getBranchFinder();
+    $defaultFinder   = $coverallsReport->getBranchFinder();
     $coverallsReport
         ->setBranchFinder(function() use ($defaultFinder) {
                 if (($branch = getenv('GITHUB_BRANCH')) === false)

@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
 
     env:
-      coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.0') && 'xdebug' || 'none' }}
+      coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.1') && 'xdebug' || '0' }}
 
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
