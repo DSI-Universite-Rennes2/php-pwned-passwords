@@ -64,7 +64,7 @@ Fork the repository and make changes on your fork in a custom branch:
 
 Write clean code. Universally formatted code promotes ease of writing, reading,
 and maintenance. Use Coding Style tests (see script section in
-[.travis.yml](./.travis.yml)).
+[.build.yml](./.github/workflows/build.yml)).
 
 Pull request descriptions should be as clear as possible and include a reference
 to all the issues that they address.
