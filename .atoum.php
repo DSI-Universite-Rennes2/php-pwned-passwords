@@ -31,7 +31,7 @@ if ($CI)
     $script->addDefaultReport();
 
     $coverallsToken  = getenv('COVERALLS_REPO_TOKEN') ?: null;
-    echo "Len token : " . len($coverallsToken) . "\n";
+    echo "Len token : " . strlen($coverallsToken) . "\n";
     $coverallsReport = new reports\asynchronous\coveralls('classes', $coverallsToken);
     $defaultFinder   = $coverallsReport->getBranchFinder();
     $coverallsReport
