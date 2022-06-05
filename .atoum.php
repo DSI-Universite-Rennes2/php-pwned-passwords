@@ -29,28 +29,22 @@ if ($CI)
     $script->addDefaultReport();
 
     $coverallsToken = getenv('COVERALLS_REPO_TOKEN') ?: null;
-    if ($coverallsToken)
-    {
-        echo "  COVERALLS Token detected...\n";
-        $coverallsReport = new reports\asynchronous\coveralls('classes', $coverallsToken);
-        $defaultFinder = $coverallsReport->getBranchFinder();
-        $coverallsReport
-            ->setBranchFinder(function() use ($defaultFinder) {
-                    if (($branch = getenv('GITHUB_BRANCH')) === false)
-                    {
-                        $branch = $defaultFinder();
-                    }
-                    return $branch;
+    $coverallsReport = new reports\asynchronous\coveralls('classes', $coverallsToken);
+    $defaultFinder = $coverallsReport->getBranchFinder();
+    $coverallsReport
+        ->setBranchFinder(function() use ($defaultFinder) {
+                if (($branch = getenv('GITHUB_BRANCH')) === false)
+                {
+                    $branch = $defaultFinder();
                 }
-            )
-            ->setServiceName('github-actions')
-            ->setServiceJobId(getenv('GITHUB_RUN_NUMBER') ?: null)
-            ->addDefaultWriter()
-        ;
-        $runner->addReport($coverallsReport);
-    } else {
-        echo "Missing coveralls token\n";
-    }
+                return $branch;
+            }
+        )
+        ->setServiceName('github-actions')
+        ->setServiceJobId(getenv('GITHUB_RUN_NUMBER') ?: null)
+        ->addDefaultWriter()
+    ;
+    $runner->addReport($coverallsReport);
 } else {
     echo "No coverage reports (missing coverage env variable) : $CI\n";
 }

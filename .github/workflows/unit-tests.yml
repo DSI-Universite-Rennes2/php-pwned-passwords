@@ -1,6 +1,6 @@
-name: PHP Composer
+name: unit tests
 
-on: 
+on:
   push:
   pull_request:
 
@@ -17,7 +17,6 @@ jobs:
 
     env:
       coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.0') && 'xdebug' || 'none' }}
-      COVERALLS_REPO_TOKEN: '${{ secrets.COVERALLS_REPO_TOKEN }}'
 
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
@@ -52,5 +51,6 @@ jobs:
 
       - name: PHP Unit Tests
         continue-on-error: ${{ matrix.experimental }}
-        run: XDEBUG_MODE=coverage php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose --enable-branch-and-path-coverage
-
+        run: XDEBUG_MODE=coverage php -ddate.timezone=Europe/Paris ./vendor/bin/atoum +verbose --enable-branch-and-path-coveragea
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
