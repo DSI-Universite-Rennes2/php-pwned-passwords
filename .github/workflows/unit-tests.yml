@@ -17,6 +17,7 @@ jobs:
 
     env:
       coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php-version == '8.0') && 'xdebug' || 'none' }}
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
     name: PHP ${{ matrix.php }} on ${{ matrix.os }}
 
