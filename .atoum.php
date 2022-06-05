@@ -9,14 +9,12 @@ More information on documentation:
 [fr] http://docs.atoum.org/fr/chapter3.html#Fichier-de-configuration
 */
 
-/*
 use
     atoum\atoum,
     atoum\atoum\reports,
     atoum\atoum\writers\std
     ;
-*/
-use mageekguy\atoum\reports;
+// use mageekguy\atoum\reports;
 
 $runner
     ->addTestsFromDirectory(__DIR__ . '/tests/units/')
