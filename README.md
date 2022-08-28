@@ -1,6 +1,11 @@
 # PHP Pwned Passwords
 
-[![reuse compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/) ![PHP](https://github.com/DSI-Universite-Rennes2/php-pwned-passwords/workflows/PHP%20Composer/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/DSI-Universite-Rennes2/php-pwned-passwords/badge.svg?branch=master)](https://coveralls.io/github/DSI-Universite-Rennes2/php-pwned-passwords?branch=master)
+[![Latest Stable Version](https://img.shields.io/packagist/v/univ-rennes2/pwned-passwords)](https://packagist.org/packages/univ-rennes2/pwned-passwords)
+[![REUSE compliant](https://reuse.software/badge/reuse-compliant.svg)](https://reuse.software/)
+[![Minimum PHP Version](https://img.shields.io/packagist/php-v/univ-rennes2/pwned-passwords?color=green&style=flat-square)](https://php.net/)
+[![Unit tests](https://github.com/DSI-Universite-Rennes2/php-pwned-passwords/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/DSI-Universite-Rennes2/php-pwned-passwords/actions/workflows/unit-tests.yml)
+[![Coverage Status](https://coveralls.io/repos/github/DSI-Universite-Rennes2/php-pwned-passwords/badge.svg?branch=master)](https://coveralls.io/github/DSI-Universite-Rennes2/php-pwned-passwords?branch=master)
+[![License](https://img.shields.io/packagist/l/univ-rennes2/pwned-passwords?color=gree)](LICENSE)
 
 A PHP library for the [Pwned Passwords's](https://haveibeenpwned.com/Passwords) API from Troy Hunt's [Have I Been Pwned](https://haveibeenpwned.com/) project.
 
