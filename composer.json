@@ -24,7 +24,10 @@
          "preferred-install": {
              "*": "dist"
          },
-         "sort-packages": true
+         "sort-packages": true,
+         "allow-plugins": {
+             "dealerdirect/phpcodesniffer-composer-installer": true
+         }
      },
      "support": {
          "issues": "https://github.com/DSI-Universite-Rennes2/php-pwned-passwords/issues",
