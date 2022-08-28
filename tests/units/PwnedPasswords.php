@@ -115,6 +115,32 @@ class PwnedPasswords extends atoum
         ;
     }
 
+    public function testIsPwnedWithMockAPIReplyBadlines() : void
+    {
+        $i=0;
+
+        $i++;
+        $pass = 'UgpIlamNHVpCNufpSuaoYypfOjMmCwxkKgLHXoIdejqzU0KA9fTEST';
+        $this->mockGenerator->generate('\UniversiteRennes2\PwnedPasswords\PwnedPasswords', '\UR2PP', 'PwnedPasswords');
+        $mock = new \UR2PP\PwnedPasswords();
+        // Mock callApi() to reply with bad lines
+        $this->calling($mock)->callApi = array(0 => 200, 1 => "FFFFFaaaaaaaaaaaaaaaaaaaa:1\r\nFFFFFazeazeaze\n\r");
+
+        // mock error_log
+        $this->function->error_log = true;
+
+        $this->assert(__METHOD__ . ' : test #' . $i)
+            ->if($mock)
+            ->then
+                ->boolean($mock->isPwned($pass))->isFalse
+            ->mock($mock)
+                ->call('callApi')->once()
+        ;
+
+        // Check that error_log was called
+        $this->function('error_log')->wasCalled()->once();
+    }
+
     public function testIsPwnedWithMockCurlExec() : void
     {
         $i =0;

@@ -108,7 +108,7 @@ class PwnedPasswords
      *
      * @return string[] Return array with http return code and body
      */
-    protected function callApi(string $hashPrefix) : array
+    public function callApi(string $hashPrefix) : array
     {
         $ch = curl_init($this->apiUrl . $hashPrefix);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -131,7 +131,7 @@ class PwnedPasswords
         return array($httpCode, $results);
     }
 
-    private function getFromApi(string $password) : int
+    public function getFromApi(string $password) : int
     {
         $hash       = strtoupper(sha1($password));
         $hashPrefix = substr($hash, 0, self::PP_RANGE_LENGTH);
@@ -143,9 +143,15 @@ class PwnedPasswords
 
         switch ($httpCode) {
             case 200:
-                $hashes = array();
-                $lines  = explode("\r\n", $body);
+                $lines = explode("\r\n", $body);
                 foreach ($lines as $line) {
+                    if (mb_strpos($line, ':') === false) {
+                        // bad format for the line ?!
+                        error_log(
+                            sprintf(static::class . '::' . __METHOD__ . " : Bad line in Api reply for the '%s' k-anonimity prefix: %s", $hashPrefix, $line)
+                        );
+                        continue;
+                    }
                     [$resSuffix, $resCount] = explode(':', trim($line));
                     if (strcmp($resSuffix, $hashSuffix) === 0) {
                         return (int) $resCount;
@@ -164,7 +170,7 @@ class PwnedPasswords
                 // There is no 404 or other responses on PwnedPasswords API :
                 // https://haveibeenpwned.com/API/v2#PwnedPasswords
                 throw new RuntimeException(
-                    sprintf('Unknown return code from API end-point %u', $httpCode)
+                    sprintf('Unknown return code from API end-point %u for %s prefix', $httpCode, $hashPrefix)
                 );
         }
     }
