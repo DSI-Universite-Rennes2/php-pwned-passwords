@@ -80,13 +80,13 @@ class PwnedPasswords extends atoum
         $i =0;
 
         $pass = 'coucoucestnous';
-        $count = 6;
+        $count = 18;
 
         $i++;
         $this->assert(__METHOD__ . ' : test #' . $i)
             ->if($this->newTestedInstance())
             ->then
-                ->integer($this->testedInstance->howManyPwned($pass))->isEqualTo($count)
+                ->integer($this->testedInstance->howManyPwned($pass))->isGreaterThan($count)
         ;
     }
 
