@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: ['ubuntu-latest']
-        php: [8.1]
+        php: [8.3]
         experimental: [ false ]
       fail-fast: false
 
@@ -43,5 +43,5 @@ jobs:
         run: composer update --prefer-stable --no-interaction
 
       - name: PHP CS
-        run: ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 --ignore=examples/console.php src/ tests/ examples/
+        run: ./vendor/bin/phpcs -p --standard=./phpcs.xml --extensions=php --warning-severity=0 src/ tests/
 

@@ -368,7 +368,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
             <property
-                name="newlinesCountBetweenOpenTagAndDeclare"
+                name="linesCountBeforeDeclare"
                 value="2"
             />
             <property
@@ -376,7 +376,7 @@
                 value="0"
             />
             <property
-                name="newlinesCountAfterDeclare"
+                name="linesCountAfterDeclare"
                 value="2"
             />
         </properties>
@@ -412,8 +412,6 @@
          forbid useless/duplicated information in phpDoc -->
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
         <properties>
-            <property name="allAnnotationsAreUseful" value="true"/>
-            <property name="enableEachParameterAndReturnInspection" value="true"/>
             <property name="traversableTypeHints" type="array">
                 <element value="Doctrine\Common\Collections\Collection"/>
             </property>
