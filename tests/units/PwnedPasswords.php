@@ -1,6 +1,8 @@
 <?php
 
+
 declare(strict_types=1);
+
 
 /*
  * Copyright (c) 2018-2019 Yann 'Ze' Richard <ze@nbox.org>
@@ -96,9 +98,7 @@ class PwnedPasswords extends atoum
 
         $i++;
         $pass = '123456';
-        $options = array(
-            CURLOPT_HEADER => false
-        );
+        $options = array(CURLOPT_HEADER => false);
         $this->assert(__METHOD__ . ' : test #' . $i)
             ->if($this->newTestedInstance())
             ->and($this->testedInstance->setCurlOptions($options))
